@@ -1,0 +1,27 @@
+# MCP Smart Vision Server — Python dependencies
+
+# Web framework / server
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+python-multipart>=0.0.6
+requests>=2.31.0
+
+# File & data operations
+openpyxl>=3.1.2
+pandas>=2.1.0
+
+# GUI automation (pixel-based)
+pyautogui>=0.9.54
+pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Window + UI Automation ("Smart Vision", element-based)
+pywinauto>=0.6.8
+comtypes>=1.2.0
+
+# Remote access tunnel (optional, for --tunnel mode)
+pyngrok>=7.0.0
+
+# Optional OCR for image/text recognition
+pytesseract>=0.3.10

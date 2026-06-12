@@ -1,0 +1,21 @@
+# Local configuration (contains your API key + ngrok token — never commit)
+config.json
+
+# Logs
+*.log
+mcp-remote-control.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.python-version
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,11 @@
+{
+  "api_key": "replace-with-your-generated-key",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "enable_tunnel": false,
+  "ngrok_auth_token": null,
+  "allowed_ips": [],
+  "rate_limit": {
+    "requests_per_minute": 60
+  }
+}
