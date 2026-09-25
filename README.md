@@ -82,6 +82,18 @@ copy config.example.json config.json
 
 If you don't create one, `start_server.py` will generate a `config.json` with a random `api_key` on first run.
 
+Security behavior:
+
+- The server **refuses every authenticated request** (HTTP 503) until `api_key` is set to a real
+  secret of at least 24 characters. The placeholder value above is rejected, so a missing or
+  unedited config can never leave the machine controllable.
+- API keys are compared in constant time.
+- `allowed_ips`: when non-empty, only these client IPs (plus localhost) may connect. Over the
+  ngrok tunnel the original client IP from `X-Forwarded-For` is used.
+- `rate_limit.requests_per_minute`: per-client-IP limit (HTTP 429 when exceeded). Set to 0 to disable.
+- The server binds to `host` (default `127.0.0.1`). Tunnel mode also binds to loopback, since ngrok
+  forwards to localhost.
+
 ---
 
 ## Running the server
@@ -215,6 +227,16 @@ mcp-smart-vision/
 - **401 Invalid API key** → the `X-API-Key` header must match `api_key` in `config.json`.
 
 ---
+
+## Tests
+
+```bash
+pip install fastapi httpx pytest
+pytest tests
+```
+
+The suite covers API-key enforcement, rate limiting and the IP allowlist, using a stub tools module
+so it runs on any OS.
 
 ## License
 
