@@ -75,9 +75,10 @@ def start_with_tunnel(config):
     tunnel_thread = threading.Thread(target=start_tunnel_thread, daemon=True)
     tunnel_thread.start()
     
-    # Start server
-    logger.info(f"Starting server on port {port}...")
-    uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
+    # Start server. Bind to loopback only: ngrok forwards to localhost, so there
+    # is no reason to also expose the server to every machine on the LAN.
+    logger.info(f"Starting server on 127.0.0.1:{port}...")
+    uvicorn.run(app, host="127.0.0.1", port=port, log_level="info")
 
 
 def start_local_only(config):
