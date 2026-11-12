@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/IsaiahAnson/mcp-smart-vision/main/assets/banner.svg" width="100%" alt="MCP Smart Vision, an AI agent tool by Isaiah Anson. Gives an AI agent eyes and hands on Windows. 41 tools, API key on every call, Windows 10/11.">
+<img src="https://raw.githubusercontent.com/IsaiahAnson/mcp-smart-vision/main/assets/banner.svg" width="100%" alt="MCP Smart Vision, an AI agent tool by Isaiah Anson. Gives an AI agent eyes and hands on Windows. 37 working tools, API key on every call, Windows 10/11.">
 
 **An HTTP/REST control server that gives an AI agent eyes and hands on a Windows desktop.**
 
@@ -7,7 +7,7 @@ This server exposes your machine's filesystem, data tools, system commands, and 
 It supports two styles of automation:
 
 - **Pixel-based** (`pyautogui`) — move/click at coordinates, type text, press hotkeys, capture the screen.
-- **Element-based "Smart Vision"** (`pywinauto` + Windows UI Automation) — *inspect* an app's real UI tree and click a button or fill a field **by its name**, no coordinates required. This is faster and survives windows being moved or resized. See [`architecture.md`](architecture.md).
+- **Element-based "Smart Vision"** (`pywinauto` + Windows UI Automation) — *inspect* an app's real UI tree and click a button or fill a field **by its name**, no coordinates required. This is faster and survives windows being moved or resized. See [`architecture.md`](architecture.md). **Not working yet:** these four tools are listed by the API but are not connected to it, so calling one returns a 500 error.
 
 > ⚠️ **This is a remote-control tool.** When run with `--tunnel` it exposes control of your desktop to anyone who has the public URL **and** the API key. Read the [Security](#security) section before exposing it to the internet.
 
@@ -15,7 +15,7 @@ It supports two styles of automation:
 
 ## Features
 
-**41 tools** across 7 categories:
+**37 working tools** across 6 categories. A seventh category, Smart Vision, has 4 more tools in the code that the API cannot run yet:
 
 | Category | Tools | Examples |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ It supports two styles of automation:
 | ⚙️ **System** (5) | run shell commands, disk usage, system info, env vars, processes | `execute_command`, `system_info` |
 | 🖱️ **GUI Automation** (9) | screenshot, move/click mouse, type, press key, hotkey, scroll, screen size | `take_screenshot`, `click_mouse`, `type_text` |
 | 🪟 **Window Management** (5) | list/find/activate windows, read window text, click buttons | `list_windows`, `activate_window` |
-| 👁️ **Smart Vision / UI Automation** (4) | inspect UI tree, click element by name, set field value, read element text | `inspect_window`, `click_ui_element` |
+| 👁️ **Smart Vision / UI Automation** (4, not working yet) | inspect UI tree, click element by name, set field value, read element text | `inspect_window`, `click_ui_element` |
 
 ---
 
@@ -154,6 +154,8 @@ requests.post(f"{BASE}/tools/hotkey", headers=HEADERS,
 ```
 
 ### Example: Smart Vision — click a button *by name* (no coordinates)
+
+This is how the calls will look. They return a 500 error until the four Smart Vision tools are connected to the API.
 
 ```python
 # 1. See what's actually in the window
