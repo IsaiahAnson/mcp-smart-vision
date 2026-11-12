@@ -1,4 +1,4 @@
-# MCP Smart Vision Server
+<img src="https://raw.githubusercontent.com/IsaiahAnson/mcp-smart-vision/main/assets/banner.svg" width="100%" alt="MCP Smart Vision, an AI agent tool by Isaiah Anson. Gives an AI agent eyes and hands on Windows. 41 tools, API key on every call, Windows 10/11.">
 
 **An HTTP/REST control server that gives an AI agent eyes and hands on a Windows desktop.**
 
